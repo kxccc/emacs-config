@@ -2,6 +2,7 @@
 
 (use-package
  org-pomodoro
+ :after (org org-agenda)
  :custom
  (org-pomodoro-length 25)
  (org-pomodoro-short-break-length 5)
