@@ -2,7 +2,7 @@
 
 (use-package
  org-pomodoro
- :after (org org-agenda)
+ :after org
  :custom
  (org-pomodoro-length 25)
  (org-pomodoro-short-break-length 5)
@@ -15,8 +15,24 @@
  (:map org-mode-map ("C-c p" . org-pomodoro)))
 
 (with-eval-after-load 'alert
+  (alert-define-style
+   'bark
+   :notifier
+   (lambda (info)
+     (defvar my-alert-prefixes '("Start break" "Ready for"))
+     (let ((msg (plist-get info :message)))
+       (when (and (stringp msg)
+                  (cl-some
+                   (lambda (p) (string-prefix-p p msg))
+                   my-alert-prefixes))
+         (url-retrieve
+          (format
+           "https://api.day.app/xxxxxx/%s?group=emacs"
+           (url-hexify-string msg))
+          #'ignore)))))
+
   (add-to-list
    'alert-user-configuration
-   '(((:category . "org-pomodoro")) osx-notifier nil)))
+   '(((:category . "org-pomodoro")) bark nil)))
 
 (provide 'init-org-pomodoro)
