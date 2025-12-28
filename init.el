@@ -26,6 +26,9 @@
 ;; 每 10 分钟自动保存
 (setq desktop-auto-save-timeout 600)
 
+;; 保守滚动，取消自动居中
+(setq scroll-conservatively 10000)
+
 (add-to-list
  'load-path (expand-file-name "lisp" user-emacs-directory)) ; 添加自定义配置文件路径
 (require 'init-evil) ; 设置 evil

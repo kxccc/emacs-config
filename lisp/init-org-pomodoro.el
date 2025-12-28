@@ -2,7 +2,6 @@
 
 (use-package
  org-pomodoro
- :after org
  :custom
  (org-pomodoro-length 25)
  (org-pomodoro-short-break-length 5)
@@ -10,9 +9,11 @@
  (org-pomodoro-long-break-frequency 4)
  ;; 启用手动开始休息
  (org-pomodoro-manual-break t)
- :bind
- (:map org-agenda-mode-map ("C-c p" . org-pomodoro))
- (:map org-mode-map ("C-c p" . org-pomodoro)))
+ :config
+ (with-eval-after-load 'org
+   (define-key org-mode-map (kbd "C-c p") #'org-pomodoro))
+ (with-eval-after-load 'org-agenda
+   (define-key org-agenda-mode-map (kbd "C-c p") #'org-pomodoro)))
 
 (with-eval-after-load 'alert
   (alert-define-style
@@ -25,6 +26,11 @@
                   (cl-some
                    (lambda (p) (string-prefix-p p msg))
                    my-alert-prefixes))
+         (url-retrieve
+          (format
+           "https://api.day.app/xxxxxx/%s?group=emacs?isArchive=1"
+           (url-hexify-string msg))
+          #'ignore)
          (url-retrieve
           (format
            "https://api.day.app/xxxxxx/%s?group=emacs"
