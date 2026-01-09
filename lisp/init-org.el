@@ -49,6 +49,16 @@
 (setq org-agenda-clockreport-parameter-plist
       '(:link t :maxlevel 5 :fileskip0 t :compact nil))
 
+;; 自定义状态
+(setq org-todo-keywords
+      '((sequence
+         "TODO(t)"
+         "DOING(d)"
+         "WAITING(w)"
+         "|"
+         "DONE(D!)"
+         "CANCELLED(C)")))
+
 ;; 自定义 agenda 视图
 (setq
  org-agenda-custom-commands
