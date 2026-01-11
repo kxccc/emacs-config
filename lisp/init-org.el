@@ -84,7 +84,12 @@
     ((org-agenda-span 7)
      (org-agenda-show-log 'only) ; 仅显示日志项
      (org-agenda-log-mode-items '(closed)) ; 只看 CLOSED 事件
-     ))))
+     ))
+   ("b" "Bill" agenda ""
+    ((org-agenda-span 7)
+
+     (org-agenda-files '("~/dev/docs/org/money.org")) ;; 限定文件
+     (org-agenda-overriding-header "📂 账单")))))
 
 ;; todo capture 模板
 (setq org-capture-templates
