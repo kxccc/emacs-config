@@ -95,7 +95,11 @@
 (setq org-capture-templates
       '(("t" "Todo" entry
          (file "~/dev/docs/org/inbox.org") ; 保存文件
-         "* TODO %?\n[%U]" ; 模板内容
+         "* TODO %?\n%U" ; 模板内容
+         )
+        ("b" "花费" entry
+         (file "~/dev/docs/org/money.org") ; 保存文件
+         "* TODO %?\n%T" ; 模板内容
          )))
 
 (global-set-key (kbd "C-c c") 'org-capture)
