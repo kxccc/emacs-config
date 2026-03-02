@@ -104,6 +104,15 @@
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; org-roam dailies
+(setq
+ org-roam-dailies-capture-templates
+ '(("d" "daily" plain "%?"
+    :target
+    (file+head
+     "%<%Y-%m-%d>.org"
+     "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n\n%[~/dev/docs/obsidian/templates/daily.org]"))))
+
 ;; org-roam
 (use-package
  org-roam
