@@ -4,10 +4,12 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 
 ;; org 目录
-(setq org-directory "~/dev/docs/obsidian")
+(setq org-directory "~/dev/docs")
 ;; org agenda 读取目录
 (setq org-agenda-files
-      '("~/dev/docs/org/work.org" "~/dev/docs/org/inbox.org"))
+      (list
+       (expand-file-name "org/work.org" org-directory)
+       (expand-file-name "org/inbox.org" org-directory)))
 ;; 启动默认目录
 (setq default-directory org-directory)
 
@@ -66,19 +68,22 @@
     ((agenda
       ""
       ((org-agenda-span 7) ;; 显示7天
-       (org-agenda-files '("~/dev/docs/org/work.org")) ;; 限定文件
+       (org-agenda-files
+        (list (expand-file-name "org/work.org" org-directory))) ;; 限定文件
        (org-agenda-overriding-header "📂 工作安排")))
      (alltodo
       ""
       ((org-agenda-files
-        '("~/dev/docs/org/inbox.org"
-          "~/dev/docs/org/reminders-beorg.org")) ;; 限定文件
+        (list
+         (expand-file-name "org/inbox.org" org-directory)
+         (expand-file-name "org/reminders-beorg.org" org-directory))) ;; 限定文件
        (org-agenda-overriding-header "🗓️ 其他安排")))
      (agenda
       ""
       ((org-agenda-span 1) ;; 显示1天
        (org-agenda-start-day "0d") ;; 从今天开始
-       (org-agenda-files '("~/dev/docs/org/foundation.org")) ;; 限定文件
+       (org-agenda-files
+        (list (expand-file-name "org/foundation.org" org-directory))) ;; 限定文件
        (org-agenda-overriding-header "🗓️ Foundation")))))
    ("r" "Closed tasks" agenda ""
     ((org-agenda-span 7)
@@ -87,31 +92,51 @@
      ))
    ("b" "Bill" agenda ""
     ((org-agenda-span 7)
-
-     (org-agenda-files '("~/dev/docs/org/money.org")) ;; 限定文件
+     (org-agenda-files
+      (list (expand-file-name "org/money.org" org-directory))) ;; 限定文件
      (org-agenda-overriding-header "📂 账单")))))
 
 ;; todo capture 模板
-(setq org-capture-templates
-      '(("t" "Todo" entry
-         (file "~/dev/docs/org/inbox.org") ; 保存文件
-         "* TODO %?\n%U" ; 模板内容
-         )
-        ("b" "花费" entry
-         (file "~/dev/docs/org/money.org") ; 保存文件
-         "* TODO %?\n%T" ; 模板内容
-         )))
+(setq
+ org-capture-templates
+ `(("t" "Todo" entry
+    (file ,(expand-file-name "org/inbox.org" org-directory)) ; 保存文件
+    "* TODO %?\n%U" ; 模板内容
+    )
+   ("b" "花费" entry
+    (file ,(expand-file-name "org/money.org" org-directory)) ; 保存文件
+    "* TODO %?\n%T" ; 模板内容
+    )))
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
-;; org-roam dailies
-(setq
- org-roam-dailies-capture-templates
- '(("d" "daily" plain "%?"
-    :target
-    (file+head
-     "%<%Y-%m-%d>.org"
-     "#+title: %<%Y-%m-%d>\n#+filetags: :daily:\n\n%[~/dev/docs/obsidian/templates/daily.org]"))))
+;; org-roam dailies 目录
+(setq org-roam-dailies-directory "obsidian/daily/")
+
+;; org-roam dailies 模板路径
+(setq my-daily-template
+      (expand-file-name "obsidian/templates/daily.org" org-directory))
+;; org-roam dailies 模板
+(setq org-roam-dailies-capture-templates
+      `(("d" "daily" plain "%?"
+         :target
+         (file+head
+          "%<%Y-%m-%d>.org"
+          ,(format
+            "#+title: %%<%%Y-%%m-%%d>\n#+filetags: :daily:\n\n%%[%s]"
+            my-daily-template)))))
+
+;; 单需求模板
+(setq my-one-requirement-template
+      (expand-file-name "obsidian/templates/单需求.org" org-directory))
+;; org-roam 模板
+(setq org-roam-capture-templates
+      `(("o" "单需求" plain (file ,my-one-requirement-template)
+         :target
+         (file+head
+          "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
+          "#+title: ${title}")
+         :unnarrowed t)))
 
 ;; org-roam
 (use-package
