@@ -4,6 +4,9 @@
 (setq custom-safe-themes t)
 (load-theme 'modus-operandi)
 
+;; 上下标得加{}
+(setq org-use-sub-superscripts '{})
+
 ;; org-modern
 (use-package
  org-modern
