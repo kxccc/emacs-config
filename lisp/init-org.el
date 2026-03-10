@@ -25,7 +25,7 @@
 ;; 显示任务今日耗时，而不是总耗时
 (setq org-clock-mode-line-total 'today)
 
-;; 把“今天”延长到凌晨 4 点  
+;; 把“今天”延长到凌晨 4 点
 (setq org-extend-today-until 4)
 
 ;; clock-in 时续上之前未完成的任务
@@ -132,6 +132,12 @@
 ;; org-roam 模板
 (setq org-roam-capture-templates
       `(("o" "单需求" plain (file ,my-one-requirement-template)
+         :target
+         (file+head
+          "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
+          "#+title: ${title}")
+         :unnarrowed t)
+        ("d" "空白" plain "%?"
          :target
          (file+head
           "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
