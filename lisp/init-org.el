@@ -9,7 +9,8 @@
 (setq org-agenda-files
       (list
        (expand-file-name "org/work.org" org-directory)
-       (expand-file-name "org/inbox.org" org-directory)))
+       (expand-file-name "org/inbox.org" org-directory)
+       (expand-file-name "org/foundation.org" org-directory)))
 ;; 启动默认目录
 (setq default-directory org-directory)
 

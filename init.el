@@ -35,6 +35,7 @@
 (require 'init-org) ; 设置 org-mode
 (require 'init-org-modern) ; 设置 org-modern
 (require 'init-org-pomodoro) ; 设置 org-pomodoro
+(require 'init-clock-resolve) ; 设置自动修正clock
 (require 'init-plugins) ; 设置其他插件
 
 (custom-set-variables
