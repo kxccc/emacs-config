@@ -20,6 +20,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; 启动时窗口最大化
 (setq word-wrap nil) ;可在单词中间换行
 (global-visual-line-mode 1) ; 自动换行显示长行文本
+(setq auto-save-visited-mode t) ;; 自动保存文件
 
 ;; 开启 desktop 保存功能
 (desktop-save-mode 1)
@@ -28,6 +29,9 @@
 
 ;; 保守滚动，取消自动居中
 (setq scroll-conservatively 10000)
+
+;; 开启server
+(server-start)
 
 (add-to-list
  'load-path (expand-file-name "lisp" user-emacs-directory)) ; 添加自定义配置文件路径
@@ -46,9 +50,7 @@
  '(custom-safe-themes
    '("5e39e95c703e17a743fb05a132d727aa1d69d9d2c9cde9353f5350e545c793d4"
      default))
- '(package-selected-packages nil)
- '(safe-local-variable-values
-   '((auto-save-visited-interval . 10) (auto-save-visited-mode . t))))
+ '(package-selected-packages nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
