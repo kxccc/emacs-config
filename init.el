@@ -20,7 +20,7 @@
 (add-to-list 'default-frame-alist '(fullscreen . maximized)) ; 启动时窗口最大化
 (setq word-wrap nil) ;可在单词中间换行
 (global-visual-line-mode 1) ; 自动换行显示长行文本
-(setq auto-save-visited-mode t) ;; 自动保存文件
+(auto-save-visited-mode 1) ;; 自动保存文件
 
 ;; 开启 desktop 保存功能
 (desktop-save-mode 1)
