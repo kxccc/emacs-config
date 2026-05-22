@@ -56,11 +56,11 @@
 (setq org-todo-keywords
       '((sequence
          "TODO(t)"
-         "DOING(d)"
-         "WAITING(w)"
+         "NEXT(n)"
+         "WAITING(w@)"
          "|"
-         "DONE(D!)"
-         "CANCELLED(C)")))
+         "DONE(d!)"
+         "CANCELLED(c@)")))
 
 ;; 自定义 agenda 视图
 (setq
