@@ -10,4 +10,9 @@
 ;; 重启 Emacs
 (use-package restart-emacs :bind (("C-c r" . restart-emacs)))
 
+;; 环境变量
+(use-package
+ exec-path-from-shell
+ :config (exec-path-from-shell-initialize))
+
 (provide 'init-plugins)

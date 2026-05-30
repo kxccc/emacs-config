@@ -111,6 +111,10 @@
 
 (global-set-key (kbd "C-c c") 'org-capture)
 
+;; 附件目录
+(setq org-attach-id-dir
+      (expand-file-name "obsidian/assets/org-attach" org-directory))
+
 ;; org-roam dailies 目录
 (setq org-roam-dailies-directory "obsidian/daily/")
 
