@@ -1,5 +1,18 @@
 ;; -*- lexical-binding: t; -*-
 
+(setq my-lock-file (expand-file-name "org/lock" org-directory))
+(setq my-identifier "work")
+(with-temp-file my-lock-file
+  (insert my-identifier))
+
+(defun my-check-lock ()
+  (unless (string=
+           (with-temp-buffer
+             (insert-file-contents my-lock-file)
+             (buffer-string))
+           my-identifier)
+    (kill-emacs)))
+
 (defun my-org-resolve-clocks ()
   (interactive)
   (unless org-clock-resolving-clocks
@@ -55,6 +68,8 @@
 
 (defun my-dir-change-handler (event)
   (let ((file (caddr event)))
+    ;; 检查锁是否有效，防止多个实例冲突
+    (my-check-lock)
     ;; 只处理 my-watch-files 里的文件
     (when (member file my-watch-files)
       (my-debounce #'my-org-resolve-clocks 10))))
