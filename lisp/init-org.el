@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; 打开 agenda 快捷键
-(global-set-key (kbd "C-c a") 'org-agenda)
+(my-leader "a" #'org-agenda)
 
 ;; org 目录
 (setq org-directory "~/dev/docs")
@@ -118,36 +118,36 @@
 ;; org-roam dailies 目录
 (setq org-roam-dailies-directory "obsidian/daily/")
 
-;; org-roam dailies 模板路径
-(setq my-daily-template
-      (expand-file-name "obsidian/templates/daily.org" org-directory))
 ;; org-roam dailies 模板
-(setq org-roam-dailies-capture-templates
-      `(("d" "daily" plain "%?"
-         :target
-         (file+head
-          "%<%Y-%m-%d>.org"
-          ,(format
-            "#+title: %%<%%Y-%%m-%%d>\n#+filetags: :daily:\n\n%%[%s]"
-            my-daily-template)))))
+(let ((daily-template
+       (expand-file-name "obsidian/templates/daily.org"
+                         org-directory)))
+  (setq
+   org-roam-dailies-capture-templates
+   `(("d" "daily" plain "%?"
+      :target
+      (file+head
+       "%<%Y-%m-%d>.org"
+       ,(format
+         "#+title: %%<%%Y-%%m-%%d>\n#+filetags: :daily:\n\n%%[%s]"
+         daily-template))))))
 
-;; 单需求模板
-(setq my-one-requirement-template
-      (expand-file-name "obsidian/templates/单需求.org" org-directory))
-;; org-roam 模板
-(setq org-roam-capture-templates
-      `(("o" "单需求" plain (file ,my-one-requirement-template)
-         :target
-         (file+head
-          "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
-          "#+title: ${title}")
-         :unnarrowed t)
-        ("d" "空白" plain "%?"
-         :target
-         (file+head
-          "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
-          "#+title: ${title}")
-         :unnarrowed t)))
+;; org-roam 单需求模板
+(let ((one-requirement-template
+       (expand-file-name "obsidian/templates/单需求.org" org-directory)))
+  (setq org-roam-capture-templates
+        `(("o" "单需求" plain (file ,one-requirement-template)
+           :target
+           (file+head
+            "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
+            "#+title: ${title}")
+           :unnarrowed t)
+          ("d" "空白" plain "%?"
+           :target
+           (file+head
+            "obsidian/roam/note/%<%Y%m%d%H%M%S>-${slug}.org"
+            "#+title: ${title}")
+           :unnarrowed t))))
 
 ;; org-roam
 (use-package

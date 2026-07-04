@@ -76,4 +76,4 @@
 
 (my-setup-file-watchers)
 
-(provide 'init-clock-resolve)
+(provide 'my/clock-resolve)

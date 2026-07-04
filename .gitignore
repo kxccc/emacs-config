@@ -9,3 +9,4 @@ eshell/
 eln-cache/
 elisp-autofmt-cache/
 bookmarks
+projectile-bookmarks.eld

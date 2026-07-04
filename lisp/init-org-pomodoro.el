@@ -20,12 +20,12 @@
    'bark
    :notifier
    (lambda (info)
-     (defvar my-alert-prefixes '("Start break" "Ready for"))
-     (let ((msg (plist-get info :message)))
+     (let ((msg (plist-get info :message))
+           (alert-prefixes '("Start break" "Ready for")))
        (when (and (stringp msg)
                   (cl-some
                    (lambda (p) (string-prefix-p p msg))
-                   my-alert-prefixes))
+                   alert-prefixes))
          (url-retrieve
           (format
            "https://api.day.app/xxxxxx/%s?group=emacs?isArchive=1"

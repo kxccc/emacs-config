@@ -36,12 +36,15 @@
 (add-to-list
  'load-path (expand-file-name "lisp" user-emacs-directory)) ; 添加自定义配置文件路径
 (require 'init-evil) ; 设置 evil
+(require 'init-general) ; 设置 general
 (require 'init-org) ; 设置 org-mode
 (require 'init-org-modern) ; 设置 org-modern
 (require 'init-org-pomodoro) ; 设置 org-pomodoro
 (require 'init-org-download) ; 设置 org-download
-(require 'init-clock-resolve) ; 设置自动修正clock
+(require 'init-completion) ; 设置补全框架
 (require 'init-plugins) ; 设置其他插件
+
+(require 'my/clock-resolve) ; 设置自动修正clock
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
