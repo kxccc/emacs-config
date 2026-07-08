@@ -1,7 +1,10 @@
 ;; -*- lexical-binding: t; -*-
 
-;; 打开 agenda 快捷键
-(my-leader "a" #'org-agenda)
+;; 全局快捷键
+(my-leader "n a" #'org-agenda)
+(my-leader "n c" #'org-capture)
+;; major mode 快捷键
+(my-leader :keymaps 'org-mode-map "m x w" #'org-cut-special)
 
 ;; org 目录
 (setq org-directory "~/dev/docs")
@@ -153,13 +156,16 @@
 (use-package
  org-roam
  :custom (org-roam-directory (file-truename org-directory))
- :bind
- (("C-c n l" . org-roam-buffer-toggle)
-  ("C-c n f" . org-roam-node-find)
-  ("C-c n g" . org-roam-graph)
-  ("C-c n i" . org-roam-node-insert)
-  ("C-c n c" . org-roam-capture)
-  ("C-c n d" . org-roam-dailies-goto-today))
+ :general
+ (my-leader
+  "n r l"
+  #'org-roam-buffer-toggle
+  "n r i"
+  #'org-roam-node-insert
+  "n r c"
+  #'org-roam-capture
+  "n r d"
+  #'org-roam-dailies-goto-today)
  :config
  ;; If you're using a vertical completion framework, you might want a more informative completion interface
  (setq org-roam-node-display-template

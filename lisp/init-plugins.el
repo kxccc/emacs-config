@@ -10,7 +10,7 @@
   "/nix/store/3rnwb06acrgdggxkgpm7fnklbxqs5mw6-python3-3.11.15/bin/python3"))
 
 ;; 重启 Emacs
-(use-package restart-emacs :bind (("C-c r" . restart-emacs)))
+(use-package restart-emacs :general (my-leader "r" #'restart-emacs))
 
 ;; 环境变量
 (use-package
