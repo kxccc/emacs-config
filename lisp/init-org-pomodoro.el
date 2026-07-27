@@ -2,17 +2,15 @@
 
 (use-package
  org-pomodoro
+ :general
+ (my-leader
+  :keymaps '(org-mode-map org-agenda-mode-map) "m p" #'org-pomodoro)
  :custom
  (org-pomodoro-length 25)
  (org-pomodoro-short-break-length 5)
  (org-pomodoro-long-break-length 15)
  (org-pomodoro-long-break-frequency 4)
  ;; 启用手动开始休息
- (org-pomodoro-manual-break t)
- :config
- (with-eval-after-load 'org
-   (define-key org-mode-map (kbd "C-c p") #'org-pomodoro))
- (with-eval-after-load 'org-agenda
-   (define-key org-agenda-mode-map (kbd "C-c p") #'org-pomodoro)))
+ (org-pomodoro-manual-break t))
 
 (provide 'init-org-pomodoro)

@@ -3,18 +3,25 @@
 ;; 全局快捷键
 (my-leader "n a" #'org-agenda)
 (my-leader "n c" #'org-capture)
+(my-leader "m o" (general-simulate-key "C-c C-o"))
 ;; major mode 快捷键
 (my-leader :keymaps 'org-mode-map "m x w" #'org-cut-special)
 
 (my-leader
- :keymaps 'org-mode-map "m x a" #'org-archive-subtree-default)
-(my-leader
- :keymaps 'org-agenda-mode-map "m x a" #'org-archive-subtree-default)
+ :keymaps
+ '(org-mode-map org-agenda-mode-map)
+ "m x a"
+ #'org-archive-subtree-default)
 
-(my-leader :keymaps 'org-mode-map "m s" #'org-schedule)
-(my-leader :keymaps 'org-agenda-mode-map "m s" #'org-schedule)
+(my-leader
+ :keymaps '(org-mode-map org-agenda-mode-map) "m s" #'org-schedule)
 
 (my-leader :keymaps 'org-mode-map "m u" #'outline-up-heading)
+
+(my-leader
+ :keymaps 'org-mode-map "m k" #'org-kill-note-or-show-branches)
+
+(my-leader :keymaps 'org-mode-map "n i" #'org-id-get-create)
 
 ;; org 目录
 (setq org-directory "~/dev/docs")
@@ -121,8 +128,6 @@
     (file ,(expand-file-name "org/money.org" org-directory)) ; 保存文件
     "* TODO %?\n%T" ; 模板内容
     )))
-
-(global-set-key (kbd "C-c c") 'org-capture)
 
 ;; 附件目录
 (setq org-attach-id-dir

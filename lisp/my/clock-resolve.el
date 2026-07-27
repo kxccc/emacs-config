@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(require 'org-clock)
+
 (setq my-lock-file (expand-file-name "org/lock" org-directory))
 (setq my-identifier "work")
 (with-temp-file my-lock-file
