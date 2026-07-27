@@ -6,6 +6,16 @@
 ;; major mode 快捷键
 (my-leader :keymaps 'org-mode-map "m x w" #'org-cut-special)
 
+(my-leader
+ :keymaps 'org-mode-map "m x a" #'org-archive-subtree-default)
+(my-leader
+ :keymaps 'org-agenda-mode-map "m x a" #'org-archive-subtree-default)
+
+(my-leader :keymaps 'org-mode-map "m s" #'org-schedule)
+(my-leader :keymaps 'org-agenda-mode-map "m s" #'org-schedule)
+
+(my-leader :keymaps 'org-mode-map "m u" #'outline-up-heading)
+
 ;; org 目录
 (setq org-directory "~/dev/docs")
 ;; org agenda 读取目录

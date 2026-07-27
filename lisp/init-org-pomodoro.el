@@ -15,30 +15,4 @@
  (with-eval-after-load 'org-agenda
    (define-key org-agenda-mode-map (kbd "C-c p") #'org-pomodoro)))
 
-(with-eval-after-load 'alert
-  (alert-define-style
-   'bark
-   :notifier
-   (lambda (info)
-     (let ((msg (plist-get info :message))
-           (alert-prefixes '("Start break" "Ready for")))
-       (when (and (stringp msg)
-                  (cl-some
-                   (lambda (p) (string-prefix-p p msg))
-                   alert-prefixes))
-         (url-retrieve
-          (format
-           "https://api.day.app/xxxxxx/%s?group=emacs?isArchive=1"
-           (url-hexify-string msg))
-          #'ignore)
-         (url-retrieve
-          (format
-           "https://api.day.app/xxxxxx/%s?group=emacs"
-           (url-hexify-string msg))
-          #'ignore)))))
-
-  (add-to-list
-   'alert-user-configuration
-   '(((:category . "org-pomodoro")) bark nil)))
-
 (provide 'init-org-pomodoro)
