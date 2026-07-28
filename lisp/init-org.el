@@ -5,23 +5,39 @@
 (my-leader "n c" #'org-capture)
 (my-leader "m o" (general-simulate-key "C-c C-o"))
 ;; major mode 快捷键
+;; 剪切节点
 (my-leader :keymaps 'org-mode-map "m x w" #'org-cut-special)
-
+;; 归档
 (my-leader
  :keymaps
  '(org-mode-map org-agenda-mode-map)
  "m x a"
- #'org-archive-subtree-default)
-
+ (general-simulate-key "C-c C-x C-a"))
+;; 修改schedule
 (my-leader
- :keymaps '(org-mode-map org-agenda-mode-map) "m s" #'org-schedule)
-
+ :keymaps
+ '(org-mode-map org-agenda-mode-map)
+ "m s"
+ (general-simulate-key "C-c C-s"))
+;; 跳转父节点
 (my-leader :keymaps 'org-mode-map "m u" #'outline-up-heading)
-
+;; 折叠节点
 (my-leader
  :keymaps 'org-mode-map "m k" #'org-kill-note-or-show-branches)
-
+;; 生成org id
 (my-leader :keymaps 'org-mode-map "n i" #'org-id-get-create)
+;; 修改优先级
+(my-leader
+ :keymaps
+ '(org-mode-map org-agenda-mode-map)
+ "m ,"
+ (general-simulate-key "C-c ,"))
+;; 修改状态
+(my-leader
+ :keymaps
+ '(org-mode-map org-agenda-mode-map)
+ "m t"
+ (general-simulate-key "C-c C-t"))
 
 ;; org 目录
 (setq org-directory "~/dev/docs")
