@@ -15,7 +15,10 @@
 ;; 环境变量
 (use-package
  exec-path-from-shell
- :config (exec-path-from-shell-initialize))
+ :config
+ (exec-path-from-shell-initialize)
+ (exec-path-from-shell-copy-env "SYNCTHING_DEVICE_ID")
+ (exec-path-from-shell-copy-env "SYNCTHING_API_KEY"))
 
 (use-package projectile :init (projectile-mode +1))
 

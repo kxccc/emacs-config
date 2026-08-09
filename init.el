@@ -45,6 +45,7 @@
 (require 'init-plugins) ; 设置其他插件
 
 (require 'my/clock-resolve) ; 设置自动修正clock
+(require 'my/syncthing-check) ; 检查syncthing连接状态
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
