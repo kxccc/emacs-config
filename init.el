@@ -42,6 +42,7 @@
 (require 'init-org-pomodoro) ; 设置 org-pomodoro
 (require 'init-org-download) ; 设置 org-download
 (require 'init-completion) ; 设置补全框架
+(require 'init-hledger) ; 设置 hledger
 (require 'init-plugins) ; 设置其他插件
 
 (require 'my/clock-resolve) ; 设置自动修正clock

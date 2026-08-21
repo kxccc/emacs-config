@@ -38,6 +38,12 @@
  '(org-mode-map org-agenda-mode-map)
  "m t"
  (general-simulate-key "C-c C-t"))
+;; refile
+(my-leader
+ :keymaps
+ '(org-mode-map org-agenda-mode-map)
+ "m w"
+ (general-simulate-key "C-c C-w"))
 
 ;; org 目录
 (setq org-directory "~/dev/docs")
