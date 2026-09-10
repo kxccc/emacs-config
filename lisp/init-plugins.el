@@ -17,6 +17,7 @@
  exec-path-from-shell
  :config
  (exec-path-from-shell-initialize)
+ (exec-path-from-shell-copy-env "MY_IDENTIFIER")
  (exec-path-from-shell-copy-env "SYNCTHING_DEVICE_ID")
  (exec-path-from-shell-copy-env "SYNCTHING_API_KEY"))
 

@@ -3,7 +3,8 @@
 (require 'org-clock)
 
 (setq my-lock-file (expand-file-name "org/lock" org-directory))
-(setq my-identifier "work")
+(defvar my-identifier (getenv "MY_IDENTIFIER"))
+
 (with-temp-file my-lock-file
   (insert my-identifier))
 
