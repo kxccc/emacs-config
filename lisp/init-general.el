@@ -4,7 +4,7 @@
 
 (use-package
  general
- :config (general-create-definer my-global :keymaps 'override)
+ :config
  (general-create-definer
   my-leader
   :states '(normal visual motion)
@@ -12,7 +12,9 @@
   :prefix-map 'my-leader-map
   :prefix "SPC"))
 
-(my-global
+(my-leader
+ :prefix
+ nil
  "C-h"
  #'windmove-left
  "C-j"
