@@ -149,6 +149,13 @@
    ("b" "花费" entry
     (file ,(expand-file-name "org/money.org" org-directory)) ; 保存文件
     "* TODO %?\n%T" ; 模板内容
+    )
+   ("d" "单次" entry
+    (file+olp
+     ,(expand-file-name "org/work.org" org-directory)
+     "单次"
+     "单次") ; 保存文件
+    "* TODO %?\nSCHEDULED: %t\n%U" ; 模板内容
     )))
 
 ;; 附件目录
