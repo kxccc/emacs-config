@@ -24,4 +24,6 @@
  "C-l"
  #'windmove-right)
 
+(my-leader "w" #'save-buffer)
+
 (provide 'init-general)

@@ -6,7 +6,7 @@
  :general (my-leader "j" #'hledger-run-command)
  :custom
  (hledger-jfile
-  (expand-file-name "obsidian/ledger/journal.journal" org-directory)) ; 账本文件
+  (expand-file-name "obsidian/ledger/temp.journal" org-directory)) ; 账本文件
  (hledger-reporting-day 1) ; 月份报告从1号开始
  (hledger-currency-string "CNY") ; 补全货币
  )
